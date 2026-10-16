@@ -1,0 +1,257 @@
+[
+ {
+  "fn": "bandTruth",
+  "args": [
+   8
+  ],
+  "out": "8 hours of direct sun reads full sun honestly."
+ },
+ {
+  "fn": "bandTruth",
+  "args": [
+   5.5
+  ],
+  "out": "5.5 hours of direct sun reads part sun honestly."
+ },
+ {
+  "fn": "bandTruth",
+  "args": [
+   3
+  ],
+  "out": "3 hours of direct sun reads part shade honestly."
+ },
+ {
+  "fn": "bandTruth",
+  "args": [
+   1
+  ],
+  "out": "1 hour of direct sun reads shade honestly."
+ },
+ {
+  "fn": "bandTruth",
+  "args": [
+   6
+  ],
+  "out": "6 hours of direct sun reads full sun honestly."
+ },
+ {
+  "fn": "bandTruth",
+  "args": [
+   4
+  ],
+  "out": "4 hours of direct sun reads part sun honestly."
+ },
+ {
+  "fn": "bandTruth",
+  "args": [
+   2
+  ],
+  "out": "2 hours of direct sun reads part shade honestly."
+ },
+ {
+  "fn": "bandTruth",
+  "args": [
+   0
+  ],
+  "err": "the hours must be above zero"
+ },
+ {
+  "fn": "bandTruth",
+  "args": [
+   -2
+  ],
+  "err": "the hours must be above zero"
+ },
+ {
+  "fn": "matchTruth",
+  "args": [
+   8,
+   5.5
+  ],
+  "out": "A plant asking 8 hours in a spot that offers 5.5 runs 2.5 hours short honestly."
+ },
+ {
+  "fn": "matchTruth",
+  "args": [
+   6,
+   8
+  ],
+  "out": "A plant asking 6 hours in a spot that offers 8 has 2.0 hours to spare honestly."
+ },
+ {
+  "fn": "matchTruth",
+  "args": [
+   6,
+   6
+  ],
+  "out": "A plant asking 6 hours in a spot that offers 6 meets the ask exactly honestly."
+ },
+ {
+  "fn": "matchTruth",
+  "args": [
+   4,
+   3.5
+  ],
+  "out": "A plant asking 4 hours in a spot that offers 3.5 runs 0.5 hours short honestly."
+ },
+ {
+  "fn": "matchTruth",
+  "args": [
+   1,
+   4
+  ],
+  "out": "A plant asking 1 hour in a spot that offers 4 has 3.0 hours to spare honestly."
+ },
+ {
+  "fn": "matchTruth",
+  "args": [
+   0,
+   5
+  ],
+  "err": "the plant's ask must be above zero"
+ },
+ {
+  "fn": "matchTruth",
+  "args": [
+   8,
+   0
+  ],
+  "err": "the offered hours must be above zero"
+ },
+ {
+  "fn": "shadowTruth",
+  "args": [
+   6,
+   "spring"
+  ],
+  "out": "A 6-foot obstacle throws a 6.0-foot shadow in spring and fall honestly."
+ },
+ {
+  "fn": "shadowTruth",
+  "args": [
+   6,
+   "summer"
+  ],
+  "out": "A 6-foot obstacle throws a 2.4-foot shadow in summer honestly."
+ },
+ {
+  "fn": "shadowTruth",
+  "args": [
+   6,
+   "winter"
+  ],
+  "out": "A 6-foot obstacle throws a 12.0-foot shadow in winter honestly."
+ },
+ {
+  "fn": "shadowTruth",
+  "args": [
+   10,
+   "fall"
+  ],
+  "out": "A 10-foot obstacle throws a 10.0-foot shadow in spring and fall honestly."
+ },
+ {
+  "fn": "shadowTruth",
+  "args": [
+   4,
+   "summer"
+  ],
+  "out": "A 4-foot obstacle throws a 1.6-foot shadow in summer honestly."
+ },
+ {
+  "fn": "shadowTruth",
+  "args": [
+   1,
+   "winter"
+  ],
+  "out": "A 1-foot obstacle throws a 2.0-foot shadow in winter honestly."
+ },
+ {
+  "fn": "shadowTruth",
+  "args": [
+   0,
+   "summer"
+  ],
+  "err": "the height must be above zero"
+ },
+ {
+  "fn": "shadowTruth",
+  "args": [
+   6,
+   "monsoon"
+  ],
+  "err": "the season must be summer, spring, fall or winter"
+ },
+ {
+  "fn": "stolenTruth",
+  "args": [
+   4,
+   6,
+   12
+  ],
+  "out": "A bed starting 4.0 feet from the fence and running 6.0 feet deep spends 6.0 feet inside the 12.0-foot shadow honestly."
+ },
+ {
+  "fn": "stolenTruth",
+  "args": [
+   10,
+   6,
+   12
+  ],
+  "out": "A bed starting 10.0 feet from the fence and running 6.0 feet deep spends 2.0 feet inside the 12.0-foot shadow honestly."
+ },
+ {
+  "fn": "stolenTruth",
+  "args": [
+   14,
+   6,
+   12
+  ],
+  "out": "A bed starting 14.0 feet from the fence and running 6.0 feet deep sits fully clear of the 12.0-foot shadow honestly."
+ },
+ {
+  "fn": "stolenTruth",
+  "args": [
+   0,
+   6,
+   12
+  ],
+  "out": "A bed starting 0.0 feet from the fence and running 6.0 feet deep spends 6.0 feet inside the 12.0-foot shadow honestly."
+ },
+ {
+  "fn": "stolenTruth",
+  "args": [
+   4,
+   20,
+   12
+  ],
+  "out": "A bed starting 4.0 feet from the fence and running 20.0 feet deep spends 8.0 feet inside the 12.0-foot shadow honestly."
+ },
+ {
+  "fn": "stolenTruth",
+  "args": [
+   -1,
+   6,
+   12
+  ],
+  "err": "the distance must be zero or more"
+ },
+ {
+  "fn": "stolenTruth",
+  "args": [
+   4,
+   0,
+   12
+  ],
+  "err": "the bed depth must be above zero"
+ },
+ {
+  "fn": "stolenTruth",
+  "args": [
+   4,
+   6,
+   0
+  ],
+  "err": "the shadow must be above zero"
+ }
+]
