@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sun Hour Math - app</title>
+<style>
+  :root { --accent:#a8641c; --ink:#2b2013; --paper:#fbf7ef; --soft:#f4ecdc; }
+  * { box-sizing:border-box; margin:0; }
+  body { font-family:Georgia, 'Times New Roman', serif; background:var(--paper); color:var(--ink); line-height:1.55; padding:2rem 1.2rem; }
+  main { max-width:660px; margin:0 auto; }
+  h1 { font-size:1.8rem; color:var(--accent); }
+  .boundary { background:#fdeaea; border-left:6px solid #b03030; color:#5c1c1c; border-radius:6px; padding:1rem 1.1rem; margin:1rem 0 1.4rem; }
+  .boundary strong { display:block; margin-bottom:.3rem; }
+  .panel { background:var(--soft); border-left:5px solid var(--accent); border-radius:6px; padding:1rem 1.1rem; margin-bottom:1.1rem; }
+  h2 { font-size:1.1rem; margin-bottom:.6rem; }
+  label { display:block; font-size:.9rem; margin:.45rem 0 .1rem; }
+  input, select { width:100%; padding:.45rem .55rem; font-size:1rem; border:1px solid #cbb894; border-radius:6px; background:#fff; color:var(--ink); }
+  .out { margin-top:.7rem; font-size:.98rem; background:#fff; border:1px dashed #cbb894; border-radius:6px; padding:.6rem .7rem; min-height:2.4rem; }
+  .out.err { border-color:#b03030; color:#8a1f1f; font-style:normal; }
+  footer { margin-top:1.8rem; font-size:.85rem; color:#71654e; }
+  a { color:var(--accent); }
+</style>
+</head>
+<body>
+<main>
+  <h1>Sun Hour Math</h1>
+  <div class="boundary">
+    <strong>Boundary: illustrative arithmetic only</strong>
+    Hour bands and shadow multipliers here are labeled norms, not measurements of your yard, your season or your plants. Watch your own garden for a week, follow the plant tag over anything this page says, and ask a local nursery about your microclimate.
+  </div>
+
+  <div class="panel">
+    <h2>The label truth</h2>
+    <label for="b-hours">Hours of direct sun the spot gets</label>
+    <input id="b-hours" type="number" min="0" step="0.5" value="5.5">
+    <div class="out" id="b-out"></div>
+  </div>
+
+  <div class="panel">
+    <h2>The match truth</h2>
+    <label for="m-need">Hours the plant asks for</label>
+    <input id="m-need" type="number" min="0" step="0.5" value="8">
+    <label for="m-offer">Hours the spot offers</label>
+    <input id="m-offer" type="number" min="0" step="0.5" value="5.5">
+    <div class="out" id="m-out"></div>
+  </div>
+
+  <div class="panel">
+    <h2>The shadow truth</h2>
+    <label for="sh-height">Fence or wall height (feet)</label>
+    <input id="sh-height" type="number" min="0" step="0.5" value="6">
+    <label for="sh-season">Season</label>
+    <select id="sh-season">
+      <option value="summer">Summer</option>
+      <option value="spring" selected>Spring</option>
+      <option value="fall">Fall</option>
+      <option value="winter">Winter</option>
+    </select>
+    <div class="out" id="sh-out"></div>
+  </div>
+
+  <div class="panel">
+    <h2>The stolen sun truth</h2>
+    <label for="st-distance">Bed starts this many feet from the fence</label>
+    <input id="st-distance" type="number" min="0" step="0.5" value="4">
+    <label for="st-depth">Bed depth (feet)</label>
+    <input id="st-depth" type="number" min="0" step="0.5" value="6">
+    <label for="st-shadow">Shadow length in the worst season (feet)</label>
+    <input id="st-shadow" type="number" min="0" step="0.5" value="12">
+    <div class="out" id="st-out"></div>
+  </div>
+
+  <footer>Sun Hour Math keeps arithmetic on labeled norms only. <a href="index.html">Why it exists</a>.</footer>
+</main>
+<script src="engine.js"></script>
+<script>
+  const num = (id) => Number(document.getElementById(id).value);
+  function show(out, fn) {
+    try {
+      const text = fn();
+      out.textContent = text;
+      out.classList.remove("err");
+    } catch (e) {
+      out.textContent = e.message;
+      out.classList.add("err");
+    }
+  }
+  const bOut = document.getElementById("b-out");
+  const mOut = document.getElementById("m-out");
+  const shOut = document.getElementById("sh-out");
+  const stOut = document.getElementById("st-out");
+  function recalc() {
+    show(bOut, () => bandTruth(num("b-hours")));
+    show(mOut, () => matchTruth(num("m-need"), num("m-offer")));
+    show(shOut, () => shadowTruth(num("sh-height"), document.getElementById("sh-season").value));
+    show(stOut, () => stolenTruth(num("st-distance"), num("st-depth"), num("st-shadow")));
+  }
+  document.querySelectorAll("input, select").forEach((el) => {
+    el.addEventListener("input", recalc);
+    el.addEventListener("change", recalc);
+  });
+  recalc();
+</script>
+</body>
+</html>
